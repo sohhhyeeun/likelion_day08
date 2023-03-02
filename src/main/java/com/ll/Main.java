@@ -40,6 +40,28 @@ public class Main {
                 }
             }
 
+            else if(regist.contains("삭제") == true) {
+                int m = regist.charAt(6) - '0';
+                try {
+                    arr.remove(m-1);
+                    System.out.printf("%d번 명언이 삭제되었습니다.\n", m);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.printf("%d번 명언은 존재하지 않습니다.\n", m);
+                }
+            }
+
+            else if(regist.contains("수정") == true) {
+                int m = regist.charAt(6) - '0';
+
+                System.out.printf("명언(기존) : %s\n", arr.get(m-1).getFamSaying());
+                System.out.print("명언 : ");
+                String famSaying = sc.nextLine();
+                System.out.printf("작가(기존) : %s\n", arr.get(m-1).getWriter());
+                System.out.print("작가 : ");
+                String writer = sc.nextLine();
+                arr.set(m-1, new Saying(m, famSaying, writer));
+            }
+
             else {
                 break;
             }
@@ -68,5 +90,9 @@ class Saying {
 
     public String getWriter() {
         return writer;
+    }
+
+    public void setFamSaying(String famSaying) {
+        this.famSaying = famSaying;
     }
 }
